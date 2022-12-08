@@ -9,6 +9,7 @@ Date   : 11/9/2022
 /*----------------------------- Includes ----------------------------------*/
 #include "stm32f1xx_hal.h"
 #include "stm32f1xx_hal_gpio.h"
+#include "stdint.h"
 
 
 /*------------------------ Global Varaibles ----------------------------------*/
@@ -110,6 +111,58 @@ typedef enum {
 	OutputPower_6dBm  = (uint8_t)0x04,
 	OutputPower_0dBm  = (uint8_t)0x06
 }NRF24_OutputPower;
+
+
+// Power Control
+typedef enum {
+	PowerControl_PowerUp   = (uint8_t)0x02,
+	PowerControl_PowerDown = (uint8_t)0x00
+}NRF24_PowerControl;
+
+
+// Transceiver Mode
+typedef enum {
+	TransceiverMode_TX = (uint8_t)0x00,
+	TransceiverMode_RX = (uint8_t)0x01
+}NRF24_TransceiverMode;
+
+/*
+// RX Pipe Adresses and TX
+typedef enum {
+	
+}
+*/
+
+// Status of RX Fifo
+typedef enum {
+	StatusRXFifo_Empty = (uint8_t)0x01, //RX FIFO empty. 
+  StatusRXFifo_Full  = (uint8_t)0x02, // The RX FIFO is full
+	StatusRXFifo_Data  = (uint8_t)0x00, // The RX FIFO contains data and available locations
+	StatusRXFifo_Error = (uint8_t)0x03  // Impossible state: RX FIFO cannot be empty and full at the same time
+}NRF24_StatusRXFifo;
+
+
+
+// Status of the TX FIFO
+typedef enum {
+	StatusTXFifo_Data   = (uint8_t)0x00, // The TX FIFO contains data and available locations
+	StatusTXFifo_Empty  = (uint8_t)0x01, // The TX FIFO is empty
+	StatusTXFifo_Full   = (uint8_t)0x02, // The TX FIFO is full
+	StatusTXFifo_Error  = (uint8_t)0x03  // Impossible state: TX FIFO cannot be empty and full at the same time
+}NRF24_StatusTXFifo;
+
+
+// Result of RX FIFO reading
+typedef enum {
+	nRF24_RX_PIPE0  = (uint8_t)0x00, // Packet received from the PIPE#0
+	nRF24_RX_PIPE1  = (uint8_t)0x01, // Packet received from the PIPE#1
+	nRF24_RX_PIPE2  = (uint8_t)0x02, // Packet received from the PIPE#2
+	nRF24_RX_PIPE3  = (uint8_t)0x03, // Packet received from the PIPE#3
+	nRF24_RX_PIPE4  = (uint8_t)0x04, // Packet received from the PIPE#4
+	nRF24_RX_PIPE5  = (uint8_t)0x05, // Packet received from the PIPE#5
+	nRF24_RX_EMPTY  = (uint8_t)0xff  // The RX FIFO is empty
+} NRF24_RXResult;
+	
 
 
 
