@@ -57,6 +57,7 @@ extern SPI_HandleTypeDef hspi1;
 #define FIFO_STATUS_REG (uint8_t)0x17  //FIFO Status Register
 #define DYNPD_REG	      (uint8_t)0x1C  //Enable dynamic payload length
 #define FEATURE_REG	    (uint8_t)0x1D  //Feature Register
+#define ALL_REG         (uint8_t)0xFF  //To rese All regs
 
 /* Instruction Mnemonics */
 #define R_REGISTER    (uint8_t)0x00  //Read command
@@ -269,5 +270,16 @@ void HAL_NRF24_setRFChannel(uint8_t channelNumber);
 -Description : To power up or power down NRF
 */
 void HAL_NRF24_setPowerMode(NRF24_PowerControl powerControl);
+
+
+/*
+-Description : to setup mode RX or TX
+*/
+void HAL_NRF24_setOperationalMode(NRF24_TransceiverMode transceiverMode);
+
+/*
+-Description : to setup output power of TX antetna
+*/
+void HAL_NRF24_setTXPower(NRF24_OutputPower outputPowerOfAntena);
 
 #endif /* NRF24L01.h */

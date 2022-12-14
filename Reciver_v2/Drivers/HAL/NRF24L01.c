@@ -166,7 +166,8 @@ void HAL_NRF24_resetRegister(uint8_t Reg)
 		HAL_NRF24_writeReg(FIFO_STATUS_REG, 0x11);
 	}
 
-	else {
+	else if (Reg == ALL_REG) 
+	{
 	HAL_NRF24_writeReg(CONFIG_REG, 0x08);
 	HAL_NRF24_writeReg(EN_AA_REG, 0x3F);
 	HAL_NRF24_writeReg(EN_RXADDR_REG, 0x03);
@@ -208,21 +209,17 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_CE_disable(); // Disable NRF before intlization 
 	
-	HAL_NRF24_resetRegister(0); // Reset All Regs
-	
-	HAL_NRF24_writeReg(CONFIG_REG,0x00);
+	HAL_NRF24_resetRegister(ALL_REG); // Reset All Regs
 	
 	HAL_NRF24_writeReg(EN_AA_REG,0x00); // Disable autoacknolgment
 	
-	HAL_NRF24_writeReg(EN_RXADDR_REG,0x00); // Disable pipes
+	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
+	
+	HAL_NRF24_setDataRate(DataRate_2Mbps); // Air Data Rate : 2Mbps 
 	
 	HAL_NRF24_setAddrsWidth(5); // 5 Bytes width
 	
 	HAL_NRF24_writeReg(SETUP_RETR_REG,0x00); // Disable  Automatic Retransmission
-	
-	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
-	
-	HAL_NRF24_setDataRate(DataRate_2Mbps); // Air Data Rate : 2Mbps , RF output power in TX mode :  0dBm
 	
 	HAL_NRF24_CE_enable();  // Enable NRF after intlization 
 	
@@ -238,7 +235,11 @@ void HAL_NRF24_TXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
+	HAL_NRF24_setTXPower(OutputPower_0dBm); // 0ddBm max power
+	
 	HAL_NRF24_writeRegMulti(TX_ADDR_REG,Address,5); // Setup TX adresses
+	
+	HAL_NRF24_setOperationalMode(TransceiverMode_TX);
 	
 	HAL_NRF24_setPowerMode(PowerControl_PowerUp); //Power Up NRF
 	
@@ -252,13 +253,11 @@ void HAL_NRF24_TXModeConfig(uint8_t *Address,uint8_t Channel)
 void HAL_NRF24_transmitData(uint8_t *Data)
 {
 	
-	//HAL_NRF24_sendCommand(W_TX_PAYLOAD); // Write TX-payload: 1 – 32 bytes.
-	
 	uint8_t cmd_to_send = W_TX_PAYLOAD;
 	
 	HAL_NRF24_CS_select();
 	
-	HAL_SPI_Transmit(NRF_Handler,&cmd_to_send,1,1000);
+	HAL_SPI_Transmit(NRF_Handler,&cmd_to_send,1,1000); // Transmit Command
 	
 	HAL_SPI_Transmit(NRF_Handler,Data,32,1000); // Send 32 bytes of data
 	
@@ -292,21 +291,17 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	uint8_t EN_RXADDRReg = HAL_NRF24_readReg(EN_RXADDR_REG);
 	
-	EN_RXADDRReg = EN_RXADDRReg | (1<<2);
+	EN_RXADDRReg = EN_RXADDRReg | (1<<0);
 	
 	HAL_NRF24_writeReg(EN_RXADDR_REG,EN_RXADDRReg); // Enable Data pipe 1 
 	
-	HAL_NRF24_writeRegMulti(RX_ADDR_P1_REG,Address,5); // Setup RX Pipe1 adresses
+	HAL_NRF24_writeRegMulti(RX_ADDR_P0_REG,Address,5); // Setup RX Pipe1 adresses
 	
-	HAL_NRF24_writeReg(RX_ADDR_P2_REG,0xEE);
+	HAL_NRF24_writeReg(RX_PW_P0_REG,32); // 32 bytes payload
 	
-	HAL_NRF24_writeReg(RX_PW_P2_REG,32); // 32 bytes payload
+	HAL_NRF24_setOperationalMode(TransceiverMode_RX);
 	
-	uint8_t configRegData = HAL_NRF24_readReg(CONFIG_REG); // Modify REG without changing its old value
-	
-	configRegData = configRegData | (1<<1) | (1<<0); // Power up NRF , Enable RX Mode
-	
-	HAL_NRF24_writeReg(CONFIG_REG,configRegData); // Power up NRF
+	HAL_NRF24_setPowerMode(PowerControl_PowerUp);
 	
 	HAL_NRF24_CE_enable(); // Enable NRF
 	
@@ -360,6 +355,10 @@ void HAL_NRF24_receiveData(uint8_t *Data)
 }
 
 
+
+/*
+-Description : Set data rate to be sent
+*/
 void HAL_NRF24_setDataRate(NRF24_DataRate dataRate)
 {
 	
@@ -371,17 +370,28 @@ void HAL_NRF24_setDataRate(NRF24_DataRate dataRate)
 
 }
 
+
+/*
+-Description : Set Addreses width
+*/
 void HAL_NRF24_setAddrsWidth(uint8_t sizeOfAdressesWidthInBytes)
 {
 	HAL_NRF24_writeReg(SETUP_AW_REG,(uint8_t)(sizeOfAdressesWidthInBytes - 2U));
 }
 
+
+/*
+-Description : Set Channel Number
+*/
 void HAL_NRF24_setRFChannel(uint8_t channelNumber)
 {
 	HAL_NRF24_writeReg(RF_CH_REG,channelNumber);
 }
 
 
+/*
+-Description : To power up or power down NRF
+*/
 void HAL_NRF24_setPowerMode(NRF24_PowerControl powerControl)
 {
 	uint8_t reg;
@@ -394,4 +404,30 @@ void HAL_NRF24_setPowerMode(NRF24_PowerControl powerControl)
 	
 	HAL_NRF24_writeReg(CONFIG_REG,reg);
 	
+}
+
+
+/*
+-Description : to setup mode RX or TX
+*/
+void HAL_NRF24_setOperationalMode(NRF24_TransceiverMode transceiverMode)
+{
+	uint8_t reg;
+	reg = HAL_NRF24_readReg(CONFIG_REG);
+	reg &= (uint8_t)(~PRIM_RX_BIT);
+	reg |= (transceiverMode & PRIM_RX_BIT);
+	HAL_NRF24_writeReg(CONFIG_REG,reg);
+}
+
+
+/*
+-Description : to setup output power of TX antetna
+*/
+
+void HAL_NRF24_setTXPower(NRF24_OutputPower outputPowerOfAntena)
+{
+	uint8_t reg = HAL_NRF24_readReg(RF_SETUP_REG);
+	reg &= ~(RF_PWR_MASK);
+	reg |= outputPowerOfAntena;
+	HAL_NRF24_writeReg(RF_SETUP_REG,reg);
 }

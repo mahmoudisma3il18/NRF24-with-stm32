@@ -592,25 +592,33 @@ Section Cross References
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_resetRegister) refers to nrf24l01.o(.text.HAL_NRF24_resetRegister) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_CE_disable) for HAL_NRF24_CE_disable
     nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_resetRegister) for HAL_NRF24_resetRegister
-    nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) for HAL_NRF24_setAddrsWidth
+    nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
     nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_setRFChannel) for HAL_NRF24_setRFChannel
     nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_setDataRate) for HAL_NRF24_setDataRate
+    nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) for HAL_NRF24_setAddrsWidth
     nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_CE_enable) for HAL_NRF24_CE_enable
-    nrf24l01.o(.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_init) refers to nrf24l01.o(.text.HAL_NRF24_init) for [Anonymous Symbol]
-    nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
-    nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setAddrsWidth) refers to nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_setRFChannel) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setRFChannel) refers to nrf24l01.o(.text.HAL_NRF24_setRFChannel) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_setDataRate) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
     nrf24l01.o(.text.HAL_NRF24_setDataRate) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setDataRate) refers to nrf24l01.o(.text.HAL_NRF24_setDataRate) for [Anonymous Symbol]
+    nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
+    nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setAddrsWidth) refers to nrf24l01.o(.text.HAL_NRF24_setAddrsWidth) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_CE_disable) for HAL_NRF24_CE_disable
     nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setRFChannel) for HAL_NRF24_setRFChannel
+    nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setTXPower) for HAL_NRF24_setTXPower
     nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_writeRegMulti) for HAL_NRF24_writeRegMulti
+    nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setOperationalMode) for HAL_NRF24_setOperationalMode
     nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setPowerMode) for HAL_NRF24_setPowerMode
     nrf24l01.o(.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_CE_enable) for HAL_NRF24_CE_enable
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_TXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_TXModeConfig) for [Anonymous Symbol]
+    nrf24l01.o(.text.HAL_NRF24_setTXPower) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
+    nrf24l01.o(.text.HAL_NRF24_setTXPower) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
+    nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setTXPower) refers to nrf24l01.o(.text.HAL_NRF24_setTXPower) for [Anonymous Symbol]
+    nrf24l01.o(.text.HAL_NRF24_setOperationalMode) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
+    nrf24l01.o(.text.HAL_NRF24_setOperationalMode) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
+    nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setOperationalMode) refers to nrf24l01.o(.text.HAL_NRF24_setOperationalMode) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_setPowerMode) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
     nrf24l01.o(.text.HAL_NRF24_setPowerMode) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setPowerMode) refers to nrf24l01.o(.text.HAL_NRF24_setPowerMode) for [Anonymous Symbol]
@@ -628,9 +636,11 @@ Section Cross References
     nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_resetRegister) for HAL_NRF24_resetRegister
     nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setRFChannel) for HAL_NRF24_setRFChannel
     nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
-    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_writeRegMulti) for HAL_NRF24_writeRegMulti
-    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_CE_enable) for HAL_NRF24_CE_enable
     nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
+    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_writeRegMulti) for HAL_NRF24_writeRegMulti
+    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setOperationalMode) for HAL_NRF24_setOperationalMode
+    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_setPowerMode) for HAL_NRF24_setPowerMode
+    nrf24l01.o(.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_CE_enable) for HAL_NRF24_CE_enable
     nrf24l01.o(.ARM.exidx.text.HAL_NRF24_RXModeConfig) refers to nrf24l01.o(.text.HAL_NRF24_RXModeConfig) for [Anonymous Symbol]
     nrf24l01.o(.text.HAL_NRF24_isDataAvailable) refers to nrf24l01.o(.text.HAL_NRF24_readReg) for HAL_NRF24_readReg
     nrf24l01.o(.text.HAL_NRF24_isDataAvailable) refers to nrf24l01.o(.text.HAL_NRF24_writeReg) for HAL_NRF24_writeReg
@@ -1289,30 +1299,34 @@ Removing Unused input sections from the image.
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_readRegMulti), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_sendCommand), (36 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_sendCommand), (8 bytes).
-    Removing nrf24l01.o(.text.HAL_NRF24_resetRegister), (240 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_resetRegister), (248 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_resetRegister), (8 bytes).
-    Removing nrf24l01.o(.text.HAL_NRF24_init), (68 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_init), (54 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_init), (8 bytes).
-    Removing nrf24l01.o(.text.HAL_NRF24_setAddrsWidth), (10 bytes).
-    Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setAddrsWidth), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_setRFChannel), (8 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setRFChannel), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_setDataRate), (28 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setDataRate), (8 bytes).
-    Removing nrf24l01.o(.text.HAL_NRF24_TXModeConfig), (40 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_setAddrsWidth), (10 bytes).
+    Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setAddrsWidth), (8 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_TXModeConfig), (52 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_TXModeConfig), (8 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_setTXPower), (28 bytes).
+    Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setTXPower), (8 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_setOperationalMode), (30 bytes).
+    Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setOperationalMode), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_setPowerMode), (32 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_setPowerMode), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_transmitData), (108 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_transmitData), (8 bytes).
-    Removing nrf24l01.o(.text.HAL_NRF24_RXModeConfig), (88 bytes).
+    Removing nrf24l01.o(.text.HAL_NRF24_RXModeConfig), (76 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_RXModeConfig), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_isDataAvailable), (52 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_isDataAvailable), (8 bytes).
     Removing nrf24l01.o(.text.HAL_NRF24_receiveData), (76 bytes).
     Removing nrf24l01.o(.ARM.exidx.text.HAL_NRF24_receiveData), (8 bytes).
 
-557 unused section(s) (total 19248 bytes) removed from the image.
+561 unused section(s) (total 19316 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1741,62 +1755,62 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000000ec   Data   RO            3    RESET               startup_stm32f103xb.o
-    0x080000ec   0x080000ec   0x00000008   Code   RO          757  * !!!main             c_w.l(__main.o)
-    0x080000f4   0x080000f4   0x00000034   Code   RO          920    !!!scatter          c_w.l(__scatter.o)
-    0x08000128   0x08000128   0x0000001a   Code   RO          922    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x080000ec   0x080000ec   0x00000008   Code   RO          761  * !!!main             c_w.l(__main.o)
+    0x080000f4   0x080000f4   0x00000034   Code   RO          924    !!!scatter          c_w.l(__scatter.o)
+    0x08000128   0x08000128   0x0000001a   Code   RO          926    !!handler_copy      c_w.l(__scatter_copy.o)
     0x08000142   0x08000142   0x00000002   PAD
-    0x08000144   0x08000144   0x0000001c   Code   RO          924    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x08000160   0x08000160   0x00000002   Code   RO          784    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          791    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          793    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          796    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          798    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          800    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          803    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          805    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          807    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          809    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          811    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          813    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          815    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          817    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          819    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          821    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          823    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          827    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          829    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          831    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000000   Code   RO          833    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x08000162   0x08000162   0x00000002   Code   RO          834    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
-    0x08000164   0x08000164   0x00000002   Code   RO          856    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          871    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          873    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          876    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          879    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          881    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000000   Code   RO          884    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x08000166   0x08000166   0x00000002   Code   RO          885    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x08000168   0x08000168   0x00000000   Code   RO          759    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x08000168   0x08000168   0x00000000   Code   RO          761    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x08000168   0x08000168   0x00000006   Code   RO          773    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0800016e   0x0800016e   0x00000000   Code   RO          763    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x0800016e   0x0800016e   0x00000004   Code   RO          764    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x08000172   0x08000172   0x00000000   Code   RO          766    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x08000172   0x08000172   0x00000008   Code   RO          767    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x0800017a   0x0800017a   0x00000002   Code   RO          788    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x0800017c   0x0800017c   0x00000000   Code   RO          836    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x0800017c   0x0800017c   0x00000004   Code   RO          837    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x08000180   0x08000180   0x00000006   Code   RO          838    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x08000144   0x08000144   0x0000001c   Code   RO          928    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x08000160   0x08000160   0x00000002   Code   RO          788    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          795    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          797    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          800    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          802    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          804    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          807    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          809    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          811    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          813    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          815    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          817    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          819    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          821    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          823    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          825    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          827    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          831    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          833    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          835    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000000   Code   RO          837    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x08000162   0x08000162   0x00000002   Code   RO          838    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
+    0x08000164   0x08000164   0x00000002   Code   RO          860    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          875    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          877    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          880    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          883    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          885    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000000   Code   RO          888    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x08000166   0x08000166   0x00000002   Code   RO          889    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x08000168   0x08000168   0x00000000   Code   RO          763    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x08000168   0x08000168   0x00000000   Code   RO          765    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x08000168   0x08000168   0x00000006   Code   RO          777    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0800016e   0x0800016e   0x00000000   Code   RO          767    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x0800016e   0x0800016e   0x00000004   Code   RO          768    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x08000172   0x08000172   0x00000000   Code   RO          770    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x08000172   0x08000172   0x00000008   Code   RO          771    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x0800017a   0x0800017a   0x00000002   Code   RO          792    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x0800017c   0x0800017c   0x00000000   Code   RO          840    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x0800017c   0x0800017c   0x00000004   Code   RO          841    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x08000180   0x08000180   0x00000006   Code   RO          842    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x08000186   0x08000186   0x00000002   PAD
     0x08000188   0x08000188   0x00000040   Code   RO            4    .text               startup_stm32f103xb.o
-    0x080001c8   0x080001c8   0x0000004e   Code   RO          753    .text               c_w.l(rt_memclr_w.o)
-    0x08000216   0x08000216   0x00000006   Code   RO          755    .text               c_w.l(heapauxi.o)
-    0x0800021c   0x0800021c   0x0000004a   Code   RO          775    .text               c_w.l(sys_stackheap_outer.o)
-    0x08000266   0x08000266   0x00000012   Code   RO          777    .text               c_w.l(exit.o)
-    0x08000278   0x08000278   0x00000008   Code   RO          785    .text               c_w.l(libspace.o)
-    0x08000280   0x08000280   0x0000000c   Code   RO          846    .text               c_w.l(sys_exit.o)
-    0x0800028c   0x0800028c   0x00000002   Code   RO          861    .text               c_w.l(use_no_semi.o)
-    0x0800028e   0x0800028e   0x00000000   Code   RO          863    .text               c_w.l(indicate_semi.o)
+    0x080001c8   0x080001c8   0x0000004e   Code   RO          757    .text               c_w.l(rt_memclr_w.o)
+    0x08000216   0x08000216   0x00000006   Code   RO          759    .text               c_w.l(heapauxi.o)
+    0x0800021c   0x0800021c   0x0000004a   Code   RO          779    .text               c_w.l(sys_stackheap_outer.o)
+    0x08000266   0x08000266   0x00000012   Code   RO          781    .text               c_w.l(exit.o)
+    0x08000278   0x08000278   0x00000008   Code   RO          789    .text               c_w.l(libspace.o)
+    0x08000280   0x08000280   0x0000000c   Code   RO          850    .text               c_w.l(sys_exit.o)
+    0x0800028c   0x0800028c   0x00000002   Code   RO          865    .text               c_w.l(use_no_semi.o)
+    0x0800028e   0x0800028e   0x00000000   Code   RO          867    .text               c_w.l(indicate_semi.o)
     0x0800028e   0x0800028e   0x00000002   Code   RO           34    .text.BusFault_Handler  stm32f1xx_it.o
     0x08000290   0x08000290   0x00000002   Code   RO           40    .text.DebugMon_Handler  stm32f1xx_it.o
     0x08000292   0x08000292   0x00000002   PAD
@@ -1837,7 +1851,7 @@ Memory Map of the image
     0x08000d7c   0x08000d7c   0x00000118   Code   RO           11    .text.main          main.o
     0x08000e94   0x08000e94   0x00000010   Data   RO          690    .rodata.AHBPrescTable  system_stm32f1xx.o
     0x08000ea4   0x08000ea4   0x00000008   Data   RO          691    .rodata.APBPrescTable  system_stm32f1xx.o
-    0x08000eac   0x08000eac   0x00000020   Data   RO          919    Region$$Table       anon$$obj.o
+    0x08000eac   0x08000eac   0x00000020   Data   RO          923    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08000ed0, Size: 0x00000710, Max: 0x00005000, ABSOLUTE)
@@ -1847,7 +1861,7 @@ Memory Map of the image
     0x20000000   0x08000ed0   0x00000008   Data   RW          258    .data..L_MergedGlobals  stm32f1xx_hal.o
     0x20000008   0x08000ed8   0x00000004   Data   RW          689    .data.SystemCoreClock  system_stm32f1xx.o
     0x2000000c   0x08000edc   0x00000004   PAD
-    0x20000010        -       0x00000060   Zero   RW          786    .bss                c_w.l(libspace.o)
+    0x20000010        -       0x00000060   Zero   RW          790    .bss                c_w.l(libspace.o)
     0x20000070        -       0x00000058   Zero   RW           17    .bss.hspi1          main.o
     0x200000c8        -       0x00000044   Zero   RW           18    .bss.huart1         main.o
     0x2000010c        -       0x00000004   Zero   RW          257    .bss.uwTick         stm32f1xx_hal.o
