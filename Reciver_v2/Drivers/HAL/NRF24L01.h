@@ -249,4 +249,25 @@ void HAL_NRF24_receiveData(uint8_t *Data);
 */
 void HAL_NRF24_resetRegister(uint8_t Reg);
 
+/*
+-Description : Set data rate to be sent
+*/
+void HAL_NRF24_setDataRate(NRF24_DataRate dataRate);
+
+/*
+-Description : Set Addreses width
+*/
+void HAL_NRF24_setAddrsWidth(uint8_t sizeOfAdressesWidthInBytes);
+
+
+/*
+-Description : Set Channel Number
+*/
+void HAL_NRF24_setRFChannel(uint8_t channelNumber);
+
+/*
+-Description : To power up or power down NRF
+*/
+void HAL_NRF24_setPowerMode(NRF24_PowerControl powerControl);
+
 #endif /* NRF24L01.h */

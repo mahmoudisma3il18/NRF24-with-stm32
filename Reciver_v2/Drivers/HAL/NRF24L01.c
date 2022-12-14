@@ -216,13 +216,13 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_writeReg(EN_RXADDR_REG,0x00); // Disable pipes
 	
-	HAL_NRF24_writeReg(SETUP_AW_REG,0x03); // 5 Bytes width (0b11)
+	HAL_NRF24_setAddrsWidth(5); // 5 Bytes width
 	
 	HAL_NRF24_writeReg(SETUP_RETR_REG,0x00); // Disable  Automatic Retransmission
 	
-	HAL_NRF24_writeReg(RF_CH_REG,0x00); // Channel number is choosen later
+	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
 	
-	HAL_NRF24_writeReg(RF_SETUP_REG,0x0E); // Air Data Rate : 2Mbps , RF output power in TX mode :  0dBm
+	HAL_NRF24_setDataRate(DataRate_2Mbps); // Air Data Rate : 2Mbps , RF output power in TX mode :  0dBm
 	
 	HAL_NRF24_CE_enable();  // Enable NRF after intlization 
 	
@@ -236,18 +236,11 @@ void HAL_NRF24_TXModeConfig(uint8_t *Address,uint8_t Channel)
 {
 	HAL_NRF24_CE_disable(); // Disable NRF before intlization 
 	
-	HAL_NRF24_writeReg(RF_CH_REG,Channel); // Select the channel (0:6 bits of data)
+	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
 	HAL_NRF24_writeRegMulti(TX_ADDR_REG,Address,5); // Setup TX adresses
 	
-	
-	uint8_t configRegData = HAL_NRF24_readReg(CONFIG_REG); // Modify REG without changing its old value
-	
-	configRegData = configRegData | (1<<1); // Power up NRF
-	
-//	configRegData = configRegData & (0xF2); // Power up NRF
-	
-	HAL_NRF24_writeReg(CONFIG_REG,configRegData); // Power up NRF
+	HAL_NRF24_setPowerMode(PowerControl_PowerUp); //Power Up NRF
 	
 	HAL_NRF24_CE_enable(); // Enable NRF
 }
@@ -295,7 +288,7 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	HAL_NRF24_resetRegister(STATUS_REG);
 	
-	HAL_NRF24_writeReg(RF_CH_REG,Channel ); // Select the channel (0:6 bits of data)
+	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
 	uint8_t EN_RXADDRReg = HAL_NRF24_readReg(EN_RXADDR_REG);
 	
@@ -363,5 +356,42 @@ void HAL_NRF24_receiveData(uint8_t *Data)
 	cmd_to_send = FLUSH_RX;
 	
 	HAL_NRF24_sendCommand(cmd_to_send);
+	
+}
+
+
+void HAL_NRF24_setDataRate(NRF24_DataRate dataRate)
+{
+	
+	uint8_t reg;
+	reg = HAL_NRF24_readReg(RF_SETUP_REG);
+	reg &= (uint8_t)(~RF_DR_MASK);
+	reg |= dataRate;
+	HAL_NRF24_writeReg(RF_SETUP_REG,reg);
+
+}
+
+void HAL_NRF24_setAddrsWidth(uint8_t sizeOfAdressesWidthInBytes)
+{
+	HAL_NRF24_writeReg(SETUP_AW_REG,(uint8_t)(sizeOfAdressesWidthInBytes - 2U));
+}
+
+void HAL_NRF24_setRFChannel(uint8_t channelNumber)
+{
+	HAL_NRF24_writeReg(RF_CH_REG,channelNumber);
+}
+
+
+void HAL_NRF24_setPowerMode(NRF24_PowerControl powerControl)
+{
+	uint8_t reg;
+	reg = HAL_NRF24_readReg(CONFIG_REG);
+	
+	if(powerControl == PowerControl_PowerUp)
+		reg |= PWR_UP_BIT;
+	else
+		reg &= ~(PWR_UP_BIT);
+	
+	HAL_NRF24_writeReg(CONFIG_REG,reg);
 	
 }
