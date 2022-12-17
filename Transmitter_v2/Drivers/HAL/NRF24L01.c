@@ -211,6 +211,10 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_resetRegister(ALL_REG); // Reset All Regs
 	
+	HAL_Delay(100);
+	
+	HAL_NRF24_writeReg(CONFIG_REG,0x00);
+	
 	HAL_NRF24_writeReg(EN_AA_REG,0x00); // Disable autoacknolgment
 	
 	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
@@ -263,7 +267,7 @@ void HAL_NRF24_transmitData(uint8_t *Data)
 	
 	HAL_NRF24_CS_unSelect();
 	
-	HAL_Delay(1);
+	HAL_Delay(10);
 	
 	uint8_t fifoStatus = HAL_NRF24_readReg(FIFO_STATUS_REG); // Get fifo status of NRF
 	

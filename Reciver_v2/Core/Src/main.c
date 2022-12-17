@@ -46,7 +46,7 @@ UART_HandleTypeDef huart1;
 
 uint8_t TxAdress[] = {'A','S','U','R','T'};
 
-uint8_t TxData[32] = {"Hey\n"};
+uint8_t RxData[32] = {};
 
 /* USER CODE BEGIN PV */
 
@@ -98,7 +98,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 	HAL_NRF24_init();
-	HAL_NRF24_TXModeConfig(TxAdress,10);
+	HAL_NRF24_RXModeConfig(TxAdress,90);
 
   /* USER CODE END 2 */
 
@@ -107,8 +107,12 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		HAL_NRF24_transmitData(TxData);
-		HAL_Delay(10);
+		if(HAL_NRF24_isDataAvailable(1) == TRUE)
+			{
+				HAL_NRF24_receiveData(RxData);
+				//HAL_Delay(1);
+				HAL_UART_Transmit(&huart1,RxData,32,1000);
+			}
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
