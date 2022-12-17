@@ -290,7 +290,7 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
 	uint8_t EN_RXADDRReg = HAL_NRF24_readReg(EN_RXADDR_REG);
-	
+	/*
 	EN_RXADDRReg = EN_RXADDRReg | (1<<0);
 	
 	HAL_NRF24_writeReg(EN_RXADDR_REG,EN_RXADDRReg); // Enable Data pipe 1 
@@ -298,6 +298,18 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	HAL_NRF24_writeRegMulti(RX_ADDR_P0_REG,Address,5); // Setup RX Pipe1 adresses
 	
 	HAL_NRF24_writeReg(RX_PW_P0_REG,32); // 32 bytes payload
+	
+	*/
+	
+	EN_RXADDRReg = EN_RXADDRReg | (1<<2);
+	
+	HAL_NRF24_writeReg(EN_RXADDR_REG,EN_RXADDRReg); // Enable Data pipe 1 
+	
+	HAL_NRF24_writeRegMulti(RX_ADDR_P1_REG,Address,5); // Setup RX Pipe1 adresses
+	
+	HAL_NRF24_writeReg(RX_ADDR_P2_REG,'A');
+	
+	HAL_NRF24_writeReg(RX_PW_P2_REG,32); // 32 bytes payload
 	
 	HAL_NRF24_setOperationalMode(TransceiverMode_RX);
 	

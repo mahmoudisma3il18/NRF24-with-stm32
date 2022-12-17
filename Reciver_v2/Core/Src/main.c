@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "NRF24L01.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -42,6 +43,10 @@
  SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart1;
+
+uint8_t TxAdress[] = {'A','S','U','R','T'};
+
+uint8_t TxData[32] = {"Hey\n"};
 
 /* USER CODE BEGIN PV */
 
@@ -92,6 +97,8 @@ int main(void)
   MX_SPI1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+	HAL_NRF24_init();
+	HAL_NRF24_TXModeConfig(TxAdress,10);
 
   /* USER CODE END 2 */
 
@@ -100,7 +107,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		HAL_NRF24_transmitData(TxData);
+		HAL_Delay(10);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
