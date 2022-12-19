@@ -211,6 +211,10 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_resetRegister(ALL_REG); // Reset All Regs
 	
+	HAL_Delay(100);
+	
+	HAL_NRF24_writeReg(CONFIG_REG,0x00);
+	
 	HAL_NRF24_writeReg(EN_AA_REG,0x00); // Disable autoacknolgment
 	
 	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
@@ -290,16 +294,6 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
 	uint8_t EN_RXADDRReg = HAL_NRF24_readReg(EN_RXADDR_REG);
-	/*
-	EN_RXADDRReg = EN_RXADDRReg | (1<<0);
-	
-	HAL_NRF24_writeReg(EN_RXADDR_REG,EN_RXADDRReg); // Enable Data pipe 1 
-	
-	HAL_NRF24_writeRegMulti(RX_ADDR_P0_REG,Address,5); // Setup RX Pipe1 adresses
-	
-	HAL_NRF24_writeReg(RX_PW_P0_REG,32); // 32 bytes payload
-	
-	*/
 	
 	EN_RXADDRReg = EN_RXADDRReg | (1<<1);
 	
@@ -309,9 +303,14 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	HAL_NRF24_writeReg(RX_PW_P1_REG,32); // 32 bytes payload
 	
-	HAL_NRF24_setOperationalMode(TransceiverMode_RX);
+	//HAL_NRF24_setOperationalMode(TransceiverMode_RX);
 	
-	HAL_NRF24_setPowerMode(PowerControl_PowerUp);
+	//HAL_NRF24_setPowerMode(PowerControl_PowerUp);
+	uint8_t configRegData = HAL_NRF24_readReg(CONFIG_REG); // Modify REG without changing its old value
+	
+	configRegData = configRegData | (1<<1) | (1<<0); // Power up NRF , Enable RX Mode
+	
+	HAL_NRF24_writeReg(CONFIG_REG,configRegData); // Power up NRF
 	
 	HAL_NRF24_CE_enable(); // Enable NRF
 	
