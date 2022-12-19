@@ -94,7 +94,7 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   HAL_NRF24_init();
-	HAL_NRF24_TXModeConfig(TxAdress,90);
+	HAL_NRF24_TXModeConfig(TxAdress,90); // Channel Number is 90
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,7 +103,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 		HAL_NRF24_transmitData(TxData);
-    HAL_Delay(80);
+    HAL_Delay(1);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

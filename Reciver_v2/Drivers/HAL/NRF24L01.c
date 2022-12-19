@@ -1,6 +1,6 @@
 /*
 Author : Mahmoud Ismail
-Date   : 11 / 9 / 2022
+Date   : 19 / 12 / 2022
 */
 
 /*--------------------------- Includes ---------------------------------------*/
@@ -267,7 +267,7 @@ void HAL_NRF24_transmitData(uint8_t *Data)
 	
 	HAL_NRF24_CS_unSelect();
 	
-	HAL_Delay(1);
+	HAL_Delay(10);
 	
 	uint8_t fifoStatus = HAL_NRF24_readReg(FIFO_STATUS_REG); // Get fifo status of NRF
 	

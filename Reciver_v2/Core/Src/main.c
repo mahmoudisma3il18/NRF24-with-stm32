@@ -98,7 +98,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 	HAL_NRF24_init();
-	HAL_NRF24_RXModeConfig(TxAdress,90);
+	HAL_NRF24_RXModeConfig(TxAdress,90); // 90 is channel number
 
   /* USER CODE END 2 */
 
@@ -107,7 +107,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		if(HAL_NRF24_isDataAvailable(1) == TRUE)
+		if(HAL_NRF24_isDataAvailable(1) == TRUE) // 1 is data pipe number
 			{
 				HAL_NRF24_receiveData(RxData);
 				//HAL_Delay(1);
