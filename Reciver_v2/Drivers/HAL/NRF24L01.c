@@ -219,7 +219,7 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
 	
-	HAL_NRF24_setDataRate(DataRate_2Mbps); // Air Data Rate : 2Mbps 
+	HAL_NRF24_setDataRate(DataRate_250Kbps); // Air Data Rate : 2Mbps 
 	
 	HAL_NRF24_setAddrsWidth(5); // 5 Bytes width
 	

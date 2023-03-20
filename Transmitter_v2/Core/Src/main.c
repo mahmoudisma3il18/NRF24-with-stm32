@@ -18,10 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "NRF24L01.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "NRF24L01.h"
+#include "stdio.h"
+#include "string.h"
 
 /* USER CODE END Includes */
 
@@ -40,13 +42,23 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- SPI_HandleTypeDef hspi1;
- 
- uint8_t TxAdress[] = {'A','S','U','R','T'};
- 
- uint8_t TxData[32] = {"Hello NRF\n"};
+CAN_HandleTypeDef hcan;
+
+SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
+typedef struct {
+                 uint64_t varaible1;
+	               uint64_t varaible2;
+	               uint64_t varaible3;
+                 uint64_t varaible4;
+}varaiblesBF;
+
+typedef union {
+	               uint8_t RecMsg[32];
+	               varaiblesBF BF;
+}varaiblesTag;
+	
 
 /* USER CODE END PV */
 
@@ -54,12 +66,28 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_CAN_Init(void);
 /* USER CODE BEGIN PFP */
+
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+uint8_t TxAdress[] = {'A','S','U','R','T'};
+ 
+CAN_RxHeaderTypeDef msgRx;
+
+CAN_FilterTypeDef canFilter;
+
+uint32_t mailbox;
+
+uint8_t RecMesg[32]= {"Hello Racing Team\n"};
+	
+varaiblesTag Varibles;
+		
+	
 
 /* USER CODE END 0 */
 
@@ -70,6 +98,15 @@ static void MX_SPI1_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	
+	
+	Varibles.BF.varaible1 = 300000;
+	Varibles.BF.varaible2 = 95000;
+	Varibles.BF.varaible3 = 50000;
+	Varibles.BF.varaible4 = 100000;
+	
+	
+	
 
   /* USER CODE END 1 */
 
@@ -92,18 +129,70 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_CAN_Init();
   /* USER CODE BEGIN 2 */
+	
   HAL_NRF24_init();
-	HAL_NRF24_TXModeConfig(TxAdress,90); // Channel Number is 90
+	
+	HAL_NRF24_TXModeConfig(TxAdress,123); // Channel Number is 123
+	
+	/*---------------- CAN Config Filter ------------------------*/
+	
+	canFilter.FilterActivation=CAN_FILTER_ENABLE;
+	
+	canFilter.FilterFIFOAssignment=CAN_FILTER_FIFO0;
+	
+	canFilter.FilterScale=CAN_FILTERSCALE_32BIT;
+	
+	canFilter.FilterMode=CAN_FILTERMODE_IDMASK;
+	
+	canFilter.FilterMaskIdLow=0;
+	
+	canFilter.FilterMaskIdHigh=0;
+	
+	canFilter.FilterIdHigh=0;
+	
+	canFilter.FilterIdLow=0;
+	
+	canFilter.FilterBank=2;
+	
+	canFilter.SlaveStartFilterBank=14;
+
+	HAL_CAN_ConfigFilter(&hcan,&canFilter);
+	
+	HAL_CAN_Start(&hcan);
+	
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		
+		//while( ! ( HAL_CAN_GetRxFifoFillLevel(&hcan,CAN_RX_FIFO0)));
+		
+		//HAL_CAN_GetRxMessage(&hcan,CAN_RX_FIFO0,&msgRx,RecMesg);
+//		uint64_t ID = 5;
+//		static uint64_t variable_1 = 1644674400;
+//		static uint64_t variable_2 = 1200674407;
+//		variable_1++;
+//		variable_2++;
+//		
+
+//		sprintf(RecMesg,"%llu          %llu%llu\n",ID,variable_1,variable_2);
+		
+		Varibles.BF.varaible1++;
+		Varibles.BF.varaible2++;
+		Varibles.BF.varaible3++;
+		Varibles.BF.varaible4++;
+
+		HAL_NRF24_transmitData("Hello Racing Team\n");
+   	HAL_Delay(1000);
+
+		
     /* USER CODE END WHILE */
-		HAL_NRF24_transmitData(TxData);
-    HAL_Delay(1);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -146,6 +235,43 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief CAN Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CAN_Init(void)
+{
+
+  /* USER CODE BEGIN CAN_Init 0 */
+
+  /* USER CODE END CAN_Init 0 */
+
+  /* USER CODE BEGIN CAN_Init 1 */
+
+  /* USER CODE END CAN_Init 1 */
+  hcan.Instance = CAN1;
+  hcan.Init.Prescaler = 16;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_15TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = DISABLE;
+  hcan.Init.AutoWakeUp = DISABLE;
+  hcan.Init.AutoRetransmission = DISABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = DISABLE;
+  if (HAL_CAN_Init(&hcan) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CAN_Init 2 */
+
+  /* USER CODE END CAN_Init 2 */
+
 }
 
 /**
@@ -202,20 +328,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, CSN_Pin|CE_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  /*Configure GPIO pin : LED_Pin */
+  GPIO_InitStruct.Pin = LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB0 PB1 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
+  /*Configure GPIO pins : CSN_Pin CE_Pin */
+  GPIO_InitStruct.Pin = CSN_Pin|CE_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

@@ -19,6 +19,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "NRF24L01.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,13 +43,16 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart1;
 
 uint8_t TxAdress[] = {'A','S','U','R','T'};
 
 uint8_t RxData[32] = {};
+	
+uint8_t RxDataToBeSentOnUart[200]={};	
+
 
 /* USER CODE BEGIN PV */
 
@@ -63,7 +69,20 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+typedef struct {
+                 uint64_t varaible1;
+	               uint64_t varaible2;
+	               uint64_t varaible3;
+                 uint64_t varaible4;
+}varaiblesBF;
 
+typedef union {
+	               uint8_t RecMsg[32];
+	               varaiblesBF BF;
+}varaiblesTag;
+
+
+varaiblesTag Varibles;	
 /* USER CODE END 0 */
 
 /**
@@ -98,7 +117,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 	HAL_NRF24_init();
-	HAL_NRF24_RXModeConfig(TxAdress,90); // 90 is channel number
+	HAL_NRF24_RXModeConfig(TxAdress,123); // 90 is channel number
 
   /* USER CODE END 2 */
 
@@ -109,9 +128,9 @@ int main(void)
     /* USER CODE END WHILE */
 		if(HAL_NRF24_isDataAvailable(1) == TRUE) // 1 is data pipe number
 			{
-				HAL_NRF24_receiveData(RxData);
-				//HAL_Delay(1);
-				HAL_UART_Transmit(&huart1,RxData,32,1000);
+			  HAL_NRF24_receiveData(RxData);
+				//sprintf(RxDataToBeSentOnUart,"Variable 1 : %llu ----- Variable 2 : %llu-------Variable 3 : %llu ----- Variable 4 : %llu\n",Varibles.BF.varaible1,Varibles.BF.varaible2,Varibles.BF.varaible3,Varibles.BF.varaible4);
+				HAL_UART_Transmit(&huart1,RxData,32,10000);
 			}
     /* USER CODE BEGIN 3 */
   }

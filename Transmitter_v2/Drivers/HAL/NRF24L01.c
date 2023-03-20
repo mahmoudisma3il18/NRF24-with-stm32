@@ -219,7 +219,7 @@ void HAL_NRF24_init(void)
 	
 	HAL_NRF24_setRFChannel(0x00); // Channel number is choosen later
 	
-	HAL_NRF24_setDataRate(DataRate_2Mbps); // Air Data Rate : 2Mbps 
+	HAL_NRF24_setDataRate(DataRate_250Kbps); // Air Data Rate : 2Mbps 
 	
 	HAL_NRF24_setAddrsWidth(5); // 5 Bytes width
 	
@@ -239,7 +239,7 @@ void HAL_NRF24_TXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	HAL_NRF24_setRFChannel(Channel); // Select the channel (0:6 bits of data)
 	
-	HAL_NRF24_setTXPower(OutputPower_6dBm); // 0ddBm max power
+	HAL_NRF24_setTXPower(OutputPower_0dBm); // 0ddBm max power
 	
 	HAL_NRF24_writeRegMulti(TX_ADDR_REG,Address,5); // Setup TX adresses
 	

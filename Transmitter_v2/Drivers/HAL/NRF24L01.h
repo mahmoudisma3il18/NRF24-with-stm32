@@ -78,7 +78,7 @@ extern SPI_HandleTypeDef hspi1;
 #define CRC_MASK      (uint8_t)0x0C  //Mask for CRC Bits [3:2] in CONFIG Reg 
 #define RF_PWR_MASK   (uint8_t)0x06  //Mask for RF Power Bits [2:1] in RF_SETUP Reg
 #define RX_P_NO_MASK  (uint8_t)0x0E  //Mask for Data pipe number bits [3:1] in STATUS Reg
-#define RF_DR_MASK    (uint8_t)0x08  //Mask for Air Data Rate bits [3] in RF_SETUP Reg
+#define RF_DR_MASK    (uint8_t)0x28  //Mask for Air Data Rate bits [3] in RF_SETUP Reg
 #define EN_RX_MASK    (uint8_t)0x3F  //Mask to enable data pipes bits [5:1] in EN_RXADDR Reg
 #define RX_PW_MASK    (uint8_t)0x3F  //Mask for size of bytes in payload [5:1]
 #define RX_FIFO_MASK  (uint8_t)0x03  //Mask for RX fifo Bits [1:0] in FIFO_STATUS Reg
@@ -100,8 +100,9 @@ extern SPI_HandleTypeDef hspi1;
 
 //  Data Rate
 typedef enum {
-	DataRate_1Mbps = (uint8_t)0x00,
-	DataRate_2Mbps = (uint8_t)0x08
+	DataRate_250Kbps = (uint8_t)0x20,
+	DataRate_1Mbps   = (uint8_t)0x00,
+	DataRate_2Mbps   = (uint8_t)0x08
 }NRF24_DataRate;
 
 
