@@ -1,0 +1,26 @@
+--cpu Cortex-M3
+"transmitter_v2\startup_stm32f103xb.o"
+"transmitter_v2\main.o"
+"transmitter_v2\stm32f1xx_it.o"
+"transmitter_v2\stm32f1xx_hal_msp.o"
+"transmitter_v2\stm32f1xx_hal_gpio_ex.o"
+"transmitter_v2\stm32f1xx_hal_can.o"
+"transmitter_v2\stm32f1xx_hal.o"
+"transmitter_v2\stm32f1xx_hal_rcc.o"
+"transmitter_v2\stm32f1xx_hal_rcc_ex.o"
+"transmitter_v2\stm32f1xx_hal_gpio.o"
+"transmitter_v2\stm32f1xx_hal_dma.o"
+"transmitter_v2\stm32f1xx_hal_cortex.o"
+"transmitter_v2\stm32f1xx_hal_pwr.o"
+"transmitter_v2\stm32f1xx_hal_flash.o"
+"transmitter_v2\stm32f1xx_hal_flash_ex.o"
+"transmitter_v2\stm32f1xx_hal_exti.o"
+"transmitter_v2\stm32f1xx_hal_spi.o"
+"transmitter_v2\stm32f1xx_hal_tim.o"
+"transmitter_v2\stm32f1xx_hal_tim_ex.o"
+"transmitter_v2\system_stm32f1xx.o"
+"transmitter_v2\nrf24l01.o"
+--strict --scatter "Transmitter_v2\Transmitter_v2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Transmitter_v2.map" -o Transmitter_v2\Transmitter_v2.axf

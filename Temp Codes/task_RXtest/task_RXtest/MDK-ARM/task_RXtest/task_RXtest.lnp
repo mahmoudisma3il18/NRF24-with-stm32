@@ -1,0 +1,24 @@
+--cpu Cortex-M3
+"task_rxtest\startup_stm32f103xb.o"
+"task_rxtest\main.o"
+"task_rxtest\stm32f1xx_it.o"
+"task_rxtest\stm32f1xx_hal_msp.o"
+"task_rxtest\stm32f1xx_hal_gpio_ex.o"
+"task_rxtest\stm32f1xx_hal_can.o"
+"task_rxtest\stm32f1xx_hal.o"
+"task_rxtest\stm32f1xx_hal_rcc.o"
+"task_rxtest\stm32f1xx_hal_rcc_ex.o"
+"task_rxtest\stm32f1xx_hal_gpio.o"
+"task_rxtest\stm32f1xx_hal_dma.o"
+"task_rxtest\stm32f1xx_hal_cortex.o"
+"task_rxtest\stm32f1xx_hal_pwr.o"
+"task_rxtest\stm32f1xx_hal_flash.o"
+"task_rxtest\stm32f1xx_hal_flash_ex.o"
+"task_rxtest\stm32f1xx_hal_exti.o"
+"task_rxtest\stm32f1xx_hal_tim.o"
+"task_rxtest\stm32f1xx_hal_tim_ex.o"
+"task_rxtest\system_stm32f1xx.o"
+--strict --scatter "task_RXtest\task_RXtest.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "task_RXtest.map" -o task_RXtest\task_RXtest.axf

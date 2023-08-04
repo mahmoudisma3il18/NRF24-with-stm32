@@ -1,0 +1,26 @@
+--cpu Cortex-M3
+"reciver_v2\startup_stm32f103xb.o"
+"reciver_v2\main.o"
+"reciver_v2\stm32f1xx_it.o"
+"reciver_v2\stm32f1xx_hal_msp.o"
+"reciver_v2\stm32f1xx_hal_gpio_ex.o"
+"reciver_v2\stm32f1xx_hal_spi.o"
+"reciver_v2\stm32f1xx_hal.o"
+"reciver_v2\stm32f1xx_hal_rcc.o"
+"reciver_v2\stm32f1xx_hal_rcc_ex.o"
+"reciver_v2\stm32f1xx_hal_gpio.o"
+"reciver_v2\stm32f1xx_hal_dma.o"
+"reciver_v2\stm32f1xx_hal_cortex.o"
+"reciver_v2\stm32f1xx_hal_pwr.o"
+"reciver_v2\stm32f1xx_hal_flash.o"
+"reciver_v2\stm32f1xx_hal_flash_ex.o"
+"reciver_v2\stm32f1xx_hal_exti.o"
+"reciver_v2\stm32f1xx_hal_tim.o"
+"reciver_v2\stm32f1xx_hal_tim_ex.o"
+"reciver_v2\stm32f1xx_hal_uart.o"
+"reciver_v2\system_stm32f1xx.o"
+"reciver_v2\nrf24l01.o"
+--strict --scatter "Reciver_v2\Reciver_v2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Reciver_v2.map" -o Reciver_v2\Reciver_v2.axf
