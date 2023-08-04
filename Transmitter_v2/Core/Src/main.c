@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -42,23 +43,12 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-CAN_HandleTypeDef hcan;
+ CAN_HandleTypeDef hcan;
 
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
-typedef struct {
-                 uint64_t varaible1;
-	               uint64_t varaible2;
-	               uint64_t varaible3;
-                 uint64_t varaible4;
-}varaiblesBF;
 
-typedef union {
-	               uint8_t RecMsg[32];
-	               varaiblesBF BF;
-}varaiblesTag;
-	
 
 /* USER CODE END PV */
 
@@ -83,12 +73,9 @@ CAN_FilterTypeDef canFilter;
 
 uint32_t mailbox;
 
-uint8_t RecMesg[32]= {"Hello Racing Team\n"};
-	
-varaiblesTag Varibles;
-		
-	
-
+uint8_t RecMesgFromCAN[8];
+uint8_t TranMesgToNRF[9];
+uint16_t RPM;
 /* USER CODE END 0 */
 
 /**
@@ -99,15 +86,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	
-	
-	Varibles.BF.varaible1 = 300000;
-	Varibles.BF.varaible2 = 95000;
-	Varibles.BF.varaible3 = 50000;
-	Varibles.BF.varaible4 = 100000;
-	
-	
-	
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -170,27 +148,30 @@ int main(void)
   while (1)
   {
 		
-		//while( ! ( HAL_CAN_GetRxFifoFillLevel(&hcan,CAN_RX_FIFO0)));
+		while( ! ( HAL_CAN_GetRxFifoFillLevel(&hcan,CAN_RX_FIFO0)));
 		
-		//HAL_CAN_GetRxMessage(&hcan,CAN_RX_FIFO0,&msgRx,RecMesg);
-//		uint64_t ID = 5;
-//		static uint64_t variable_1 = 1644674400;
-//		static uint64_t variable_2 = 1200674407;
-//		variable_1++;
-//		variable_2++;
-//		
-
-//		sprintf(RecMesg,"%llu          %llu%llu\n",ID,variable_1,variable_2);
+		HAL_CAN_GetRxMessage(&hcan,CAN_RX_FIFO0,&msgRx,RecMesgFromCAN);
+		RPM = RecMesgFromCAN[1] | (RecMesgFromCAN[0] << 8);
+		TranMesgToNRF[0] = ((msgRx.StdId) & 0xFF); // Get CAN ID
 		
-		Varibles.BF.varaible1++;
-		Varibles.BF.varaible2++;
-		Varibles.BF.varaible3++;
-		Varibles.BF.varaible4++;
-
-		HAL_NRF24_transmitData("Hello Racing Team\n");
-   	HAL_Delay(1000);
-
+		for(int i = 0 ; i <=7 ;i++)
+		   TranMesgToNRF[i+1] = RecMesgFromCAN[i];
+		//TranMesgToNRF[0] = 0x50;
+		//TranMesgToNRF[2] = 0x01;
+	  //TranMesgToNRF[3] = 0x58;
 		
+		HAL_NRF24_transmitData(TranMesgToNRF);
+   	//HAL_Delay(100);
+    
+		/*
+		if(  ( HAL_CAN_GetRxFifoFillLevel(&hcan,CAN_RX_FIFO0)))
+	{
+		if( ! ( HAL_CAN_GetRxFifoFillLevel(&hcan,CAN_RX_FIFO0)));		
+		HAL_CAN_GetRxMessage(&hcan,CAN_RX_FIFO0,&msgRx,RecMesgFromCAN);
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		
+	}
+		*/
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

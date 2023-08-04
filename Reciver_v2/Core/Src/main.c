@@ -19,9 +19,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "NRF24L01.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <inttypes.h>
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -47,14 +50,18 @@ SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart1;
 
-uint8_t TxAdress[] = {'A','S','U','R','T'};
 
-uint8_t RxData[32] = {};
-	
-uint8_t RxDataToBeSentOnUart[200]={};	
 
 
 /* USER CODE BEGIN PV */
+uint8_t TxAdress[] = {'A','S','U','R','T'};
+
+uint8_t RxData[9] = {0};
+	
+uint8_t RxDataToBeSentOnUart[26]={0};	
+
+volatile uint64_t data = 0;
+volatile uint8_t  ID = 0;
 
 /* USER CODE END PV */
 
@@ -69,20 +76,7 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-typedef struct {
-                 uint64_t varaible1;
-	               uint64_t varaible2;
-	               uint64_t varaible3;
-                 uint64_t varaible4;
-}varaiblesBF;
 
-typedef union {
-	               uint8_t RecMsg[32];
-	               varaiblesBF BF;
-}varaiblesTag;
-
-
-varaiblesTag Varibles;	
 /* USER CODE END 0 */
 
 /**
@@ -128,14 +122,18 @@ int main(void)
     /* USER CODE END WHILE */
 		if(HAL_NRF24_isDataAvailable(1) == TRUE) // 1 is data pipe number
 			{
-			  HAL_NRF24_receiveData(RxData);
-				//sprintf(RxDataToBeSentOnUart,"Variable 1 : %llu ----- Variable 2 : %llu-------Variable 3 : %llu ----- Variable 4 : %llu\n",Varibles.BF.varaible1,Varibles.BF.varaible2,Varibles.BF.varaible3,Varibles.BF.varaible4);
-				HAL_UART_Transmit(&huart1,RxData,32,10000);
-			}
+				HAL_NRF24_receiveData(RxData);
+				ID = RxData[0];
+				for(int i = 0 ; i<=7 ; i++)
+				   data |= ((uint64_t)RxData[i+1] << (uint64_t)(8*i));
+				sprintf(RxDataToBeSentOnUart,"~!@%c%"PRIu64 ,ID,data);
+				HAL_UART_Transmit(&huart1,RxDataToBeSentOnUart,26,100);
+				data = 0;
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
+	}
 
 /**
   * @brief System Clock Configuration
@@ -230,7 +228,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 57600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;

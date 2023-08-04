@@ -263,7 +263,7 @@ void HAL_NRF24_transmitData(uint8_t *Data)
 	
 	HAL_SPI_Transmit(NRF_Handler,&cmd_to_send,1,100); // Transmit Command
 	
-	HAL_SPI_Transmit(NRF_Handler,Data,32,1000); // Send 32 bytes of data
+	HAL_SPI_Transmit(NRF_Handler,Data,9,1000); // Send 32 bytes of data
 	
 	HAL_NRF24_CS_unSelect();
 	
@@ -313,7 +313,7 @@ void HAL_NRF24_RXModeConfig(uint8_t *Address,uint8_t Channel)
 	
 	HAL_NRF24_writeReg(RX_ADDR_P2_REG,'A');
 	
-	HAL_NRF24_writeReg(RX_PW_P2_REG,32); // 32 bytes payload
+	HAL_NRF24_writeReg(RX_PW_P2_REG,9); // 32 bytes payload
 	
 	HAL_NRF24_setOperationalMode(TransceiverMode_RX);
 	
@@ -358,7 +358,7 @@ void HAL_NRF24_receiveData(uint8_t *Data)
 	
 	HAL_SPI_Transmit(NRF_Handler,&cmd_to_send,1,1000);
 	
-	HAL_SPI_Receive(NRF_Handler,Data,32,1000); // Send 32 bytes of data
+	HAL_SPI_Receive(NRF_Handler,Data,9,1000); // Send 9 bytes of data
 	
 	HAL_NRF24_CS_unSelect();
 	
