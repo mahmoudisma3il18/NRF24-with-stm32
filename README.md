@@ -3,7 +3,7 @@
 ![NRF24L01](https://img.shields.io/badge/Module-NRF24L01-green)
 ![STM32](https://img.shields.io/badge/Microcontroller-STM32-orange)
 
-This repository contains a library and example code for interfacing the NRF24L01 wireless communication module with STM32 microcontrollers. The NRF24L01 is a popular 2.4GHz wireless transceiver module, and this library aims to provide an easy-to-use interface to enable seamless communication between STM32-based devices.
+This repository contains a library and example code for interfacing the NRF24L01 wireless communication module with STM32 microcontrollers. The NRF24L01 is a popular 2.4GHz wireless transceiver module, and this library aims to provide an easy-to-use interface to enable seamless communication between STM32-based devices, this project is used as a telematic system for formula student car as it communicates with car over can and sends data wireless to the receiver and data is received and displayed over GUI.
 
 ## Table of Contents
 
@@ -15,7 +15,6 @@ This repository contains a library and example code for interfacing the NRF24L01
 - [Usage](#usage)
 - [Examples](#examples)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
 
 ## Introduction
@@ -70,17 +69,11 @@ To get started, follow these steps:
 
 For a detailed description of each API and its parameters, refer to the comments and documentation in the `nrf24.h` header file.
 
-## Examples
-
-The `Examples` directory contains several sample projects demonstrating how to use the library with different STM32 microcontrollers. These examples cover basic transmission and reception scenarios and can serve as a starting point for building your custom applications.
 
 ## Contributing
 
 Contributions to this repository are highly appreciated. If you find any bugs, want to add new features, or improve the existing code, feel free to open a pull request following the guidelines mentioned in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). You are free to use this library in your personal and commercial projects.
 
 ## Acknowledgements
 
@@ -88,4 +81,3 @@ We would like to express our gratitude to [Mahmoud Ismael](https://github.com/ma
 
 ---
 
-**Note:** Make sure to replace the placeholders like "mahmoudisma3il18" in the repository URL with the actual GitHub username.
