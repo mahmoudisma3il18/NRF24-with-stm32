@@ -22,12 +22,12 @@ Dialog DLL:      TCM.DLL V1.36.5.0
  
 <h2>Project:</h2>
 D:\Embedded Systems\NRF24-with-stm32\Reciver_v2\MDK-ARM\Reciver_v2.uvprojx
-Project File Date:  07/09/2023
+Project File Date:  06/27/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.13.1', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Reciver_v2'
-../Core/Src/main.c(146): warning: passing 'uint8_t [26]' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+../Core/Src/main.c(130): warning: passing 'uint8_t [26]' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]
                                 sprintf(RxDataToBeSentOnUart,"~!@%c%"PRIu64 ,ID,data);
                                         ^~~~~~~~~~~~~~~~~~~~
 C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h(417): note: passing argument to parameter here
@@ -36,7 +36,7 @@ extern _ARMABI int sprintf(char * __restrict /*s*/, const char * __restrict /*fo
 1 warning generated.
 compiling main.c...
 linking...
-Program Size: Code=7232 RO-data=292 RW-data=20 ZI-data=1916  
+Program Size: Code=7116 RO-data=292 RW-data=20 ZI-data=1852  
 FromELF: creating hex file...
 "Reciver_v2\Reciver_v2.axf" - 0 Error(s), 1 Warning(s).
 
@@ -62,7 +62,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

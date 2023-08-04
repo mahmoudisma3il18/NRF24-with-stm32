@@ -18,15 +18,15 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include "NRF24L01.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
 #include <inttypes.h>
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
@@ -45,12 +45,9 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart1;
-UART_HandleTypeDef huart2;
-
-/* USER CODE BEGIN PV */
 
 uint8_t TxAdress[] = {'A','S','U','R','T'};
 
@@ -60,24 +57,12 @@ uint8_t RxDataToBeSentOnUart[26]={0};
 
 volatile uint64_t data = 0;
 volatile uint8_t  ID = 0;
-/*double latitude;
-double longitude;
-double Speed;
-uint8_t long_lat [12];
-uint8_t speed [9];
-uint8_t new_line [2] = "\r\n";		
-uint8_t space =  ' ';
-
-void GPS_print(uint8_t *data,uint8_t size)
-{
-	HAL_UART_Transmit( &huart2, data,size ,HAL_MAX_DELAY );
-}
-
-void Parse(void)
-{
 
 
-}*/
+
+
+/* USER CODE BEGIN PV */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,7 +70,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART1_UART_Init(void);
-static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -126,7 +110,6 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USART1_UART_Init();
-  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 	HAL_NRF24_init();
 	HAL_NRF24_RXModeConfig(TxAdress,123); // 90 is channel number
@@ -137,7 +120,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-				if(HAL_NRF24_isDataAvailable(1) == TRUE) // 1 is data pipe number
+    /* USER CODE END WHILE */
+		if(HAL_NRF24_isDataAvailable(1) == TRUE) // 1 is data pipe number
 			{
 				HAL_NRF24_receiveData(RxData);
 				ID = RxData[0];
@@ -146,39 +130,7 @@ int main(void)
 				sprintf(RxDataToBeSentOnUart,"~!@%c%"PRIu64 ,ID,data);
 				HAL_UART_Transmit(&huart1,RxDataToBeSentOnUart,26,100);
 				data = 0;
-			/*	switch(ID)
-		     {
-					case 0x10: 
-						memcpy(&latitude, &RxData[1], sizeof(RxData)-1);
-						break;
-					
-					case 0x11: 
-						memcpy(&longitude, &RxData[1], sizeof(RxData)-1);
-						break;
-					
-					case 0x12: 
-						memcpy(&Speed, &RxData[1], sizeof(RxData)-1);
-						break;
-		     }
-				
-				sprintf((char *)long_lat ,"%0.8lf" ,longitude);		
-				GPS_print(long_lat , 11);	
-				GPS_print(&space,1);							
-				
-				sprintf((char *)long_lat ,"%0.8lf" ,latitude);	
-				GPS_print(long_lat,11);				
-				GPS_print(&space,1);								
-			
-							
-				
-				
-				sprintf((char *)speed,"%f",Speed);	
-				GPS_print(speed,5);		
-				GPS_print( new_line , 2 );*/
 			}
-				 
-    /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -295,39 +247,6 @@ static void MX_USART1_UART_Init(void)
 }
 
 /**
-  * @brief USART2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART2_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART2_Init 0 */
-
-  /* USER CODE END USART2_Init 0 */
-
-  /* USER CODE BEGIN USART2_Init 1 */
-
-  /* USER CODE END USART2_Init 1 */
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 57600;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART2_Init 2 */
-
-  /* USER CODE END USART2_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -343,20 +262,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, CSN_Pin|CE_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : LED_Pin */
-  GPIO_InitStruct.Pin = LED_Pin;
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : CSN_Pin CE_Pin */
-  GPIO_InitStruct.Pin = CSN_Pin|CE_Pin;
+  /*Configure GPIO pins : PB0 PB1 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
